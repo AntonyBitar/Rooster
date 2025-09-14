@@ -131,7 +131,7 @@ class _CreateNewSupplierOrderState extends State<CreateNewSupplierOrder> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // PageTitle(text: 'create_new_quotation'.tr),
-                Text("Create New Supplier Order",
+                Text("Create New Bloc Order",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -917,7 +917,7 @@ class _CreateNewSupplierOrderState extends State<CreateNewSupplierOrder> {
                         }
                       },
                       // btnText: 'create_quotation'.tr,
-                      btnText: 'Create Supplier Order',
+                      btnText: 'Create Bloc Order',
                     ),
                   ],
                 )
@@ -1523,7 +1523,7 @@ class _MobileCreateNewSupplierOrderState extends State<MobileCreateNewSupplierOr
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // PageTitle(text: 'create_new_quotation'.tr),
-                Text("Create New Supplier Order",
+                Text("Create New Bloc Order",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -2341,7 +2341,7 @@ class _MobileCreateNewSupplierOrderState extends State<MobileCreateNewSupplierOr
                         }
                       },
                       // btnText: 'create_quotation'.tr,
-                      btnText: 'Create Supplier Order',
+                      btnText: 'Create Bloc Order',
                     ),
                   ],
                 )

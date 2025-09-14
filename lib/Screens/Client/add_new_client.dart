@@ -520,6 +520,9 @@ class _AddNewClientState extends State<AddNewClient> {
                                 DialogTextField(
                                   textEditingController: taxNumberController,
                                   text: 'tax_number'.tr,
+                                  onChangedFunc: (v){
+
+                                  },
                                   rowWidth:smallRowWidth,
                                   textFieldWidth:smallTextFieldWidth,
                                   validationFunc: (String val) {
@@ -1561,7 +1564,6 @@ class _MobileAddNewClientState extends State<MobileAddNewClient> {
       _scrollToFirstInvalidField();
     });
   }
-
   @override
   void initState() {
     getFieldsForCreateClientsFromBack();
@@ -1746,19 +1748,19 @@ class _MobileAddNewClientState extends State<MobileAddNewClient> {
                     validationFunc: (val) {},
                   ),
                   gapH10,
-                  DialogTextField(
-                    globalKey: taxNumberKey,
-                    textEditingController: taxIdController,
-                    textFieldWidth: MediaQuery.of(context).size.width * 0.55,
-                    rowWidth: MediaQuery.of(context).size.width * 0.9,
-                    validationFunc: (val) {
-                      if (selectedClientType == 2 && val.isEmpty) {
-                        return 'required_field'.tr;
-                      }
-                      return null;
-                    },
-                    text: 'tax_number'.tr,
-                  ),
+                  // DialogTextField(
+                  //   globalKey: taxNumberKey,
+                  //   textEditingController: taxIdController,
+                  //   textFieldWidth: MediaQuery.of(context).size.width * 0.55,
+                  //   rowWidth: MediaQuery.of(context).size.width * 0.9,
+                  //   validationFunc: (val) {
+                  //     if (selectedClientType == 2 && val.isEmpty) {
+                  //       return 'required_field'.tr;
+                  //     }
+                  //     return null;
+                  //   },
+                  //   text: 'tax_number'.tr,
+                  // ),
                   gapH10,
                   PhoneTextField(
                     globalKey: phoneKey,

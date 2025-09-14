@@ -1,5 +1,6 @@
 // const String baseUrl='https://theravenstyle.com/api';
-const String baseUrl='https://theravenstyle.com/rooster-backend/public/api';
+//const String baseUrl='https://theravenstyle.com/rooster-backend/public/api';
+const String baseUrl = 'http://127.0.0.1:8000/api';
 // const String baseUrl='https://demo.theravenstyle.com/rooster-backend-with-headers/public/api'; //test version
 const String baseImage='https://theravenstyle.com/rooster-backend/public/';
 
@@ -8,6 +9,10 @@ const kLoginUrl='$baseUrl/login';
 const kOrdersUrl='$baseUrl/orders';
 const kClientsTransactionsUrl='$baseUrl/clients/transactions';
 const kClientUrl='$baseUrl/clients';
+const kSupplierUrl='$baseUrl/suppliers';
+const kCityUrl='$baseUrl/cities';
+const kSupplierCreateUrl='$baseUrl/suppliers/create';
+const kCountryUrl='$baseUrl/countries';
 const kUpdateClientUrl='$baseUrl/clients/update';
 const kGetFieldsForCreateClientUrl='$baseUrl/clients/create';
 const kGetAllQuotationsUrl='$baseUrl/quotations';

@@ -132,7 +132,7 @@ class _CreateNewReturnToSupplierState extends State<CreateNewReturnToSupplier> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // PageTitle(text: 'create_new_return_to_supplier'.tr),
-                PageTitle(text: 'Create New Return To Supplier'),
+                PageTitle(text: 'Create New Return To Bloc'),
 
 
               ],
@@ -916,7 +916,7 @@ class _CreateNewReturnToSupplierState extends State<CreateNewReturnToSupplier> {
                         }
                       },
                       // btnText: 'create_return_to_supplier'.tr,
-                      btnText: 'Create Return To Supplier',
+                      btnText: 'Create Return To Bloc',
                     ),
                   ],
                 )
@@ -1522,7 +1522,7 @@ class _MobileCreateNewReturnToSupplierState extends State<MobileCreateNewReturnT
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // PageTitle(text: 'create_new_return_to_supplier'.tr),
-                PageTitle(text: 'Create New Return To Supplier'),
+                PageTitle(text: 'Create New Return To Bloc'),
               ],
             ),
             gapH16,
@@ -2337,7 +2337,7 @@ class _MobileCreateNewReturnToSupplierState extends State<MobileCreateNewReturnT
                         }
                       },
                       // btnText: 'create_return+to_supplier'.tr,
-                      btnText: 'Create ReturnTo Supplier',
+                      btnText: 'Create ReturnTo Bloc',
                     ),
                   ],
                 )

@@ -81,21 +81,7 @@ class ClientController extends GetxController {
   }
 
 
-  List<Map> contactsList=[
-    // {    'type':'1',
-    //   'name':'',
-    //   'title':'',
-    //   'jobPosition':'',
-    //   'deliveryAddress':'',
-    //   'phoneCode':'',
-    //   'phoneNumber':'',
-    //   'extension':'',
-    //   'mobileCode':'',
-    //   'mobileNumber':'',
-    //   'email':'',
-    //   'note':'',
-    //   'internalNote':'',}
-  ];
+  List<Map> contactsList=[];
    addToContactsList(Map newMap){
      contactsList.add(newMap);
      update();

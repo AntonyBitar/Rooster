@@ -387,11 +387,8 @@ class DialogNumericTextField extends StatelessWidget {
                 // fillColor: Colors.white,
                 contentPadding:
                 homeController.isMobile.value
-                    ? const EdgeInsets.symmetric(
-                  vertical: 16.0,
-                  horizontal: 10.0,
-                )
-                    : const EdgeInsets.fromLTRB(10, 0, 25, 5),
+                    ? const EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0)
+                    : const EdgeInsets.fromLTRB(20, 15, 25, 15),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.black.withAlpha((0.1 * 255).toInt()),
@@ -916,6 +913,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
       ),
     );
   }
+
 
   Widget _buildDropdownItem(Country country) => SizedBox(
     width: 130,

@@ -141,36 +141,36 @@ const List<Entry> data = <Entry>[
     Entry(
       'suppliers',
       '',
-      //"assets/images/suppliers.png",
-      <Entry>[Entry('suppliers', "")],
+      //"assets/images/suppliers.png",accounts
+      <Entry>[Entry('supplierAccounts', ""),Entry('add_new_supplier', "")],
     ),
-    Entry(
-      'supplier_order',
-      '',
-      //"assets/images/supplierOrderIcon.png",
-      <Entry>[
-        Entry('new_supplier_order', ""),
-        Entry('supplier_order_summary', ""),
-      ],
-    ),
-    Entry(
-      'purchase_invoice',
-      '',
-      //"assets/images/purchaseInvoiceIcon.png",
-      <Entry>[
-        Entry('new_purchase_invoice', ""),
-        Entry('purchase_invoice_summary', ""),
-      ],
-    ),
-    Entry(
-      'return_to_supplier',
-      '',
-      //"assets/images/returntosupplier.png",
-      <Entry>[
-        Entry('return_to_supplier', ""),
-        Entry('return_to_supplier_summary', ""),
-      ],
-    ),
+    // Entry(
+    //   'supplier_order',
+    //   '',
+    //   //"assets/images/supplierOrderIcon.png",
+    //   <Entry>[
+    //     Entry('new_supplier_order', ""),
+    //     Entry('supplier_order_summary', ""),
+    //   ],
+    // ),
+    // Entry(
+    //   'purchase_invoice',
+    //   '',
+    //   //"assets/images/purchaseInvoiceIcon.png",
+    //   <Entry>[
+    //     Entry('new_purchase_invoice', ""),
+    //     Entry('purchase_invoice_summary', ""),
+    //   ],
+    // ),
+    // Entry(
+    //   'return_to_supplier',
+    //   '',
+    //   //"assets/images/returntosupplier.png",
+    //   <Entry>[
+    //     Entry('return_to_supplier', ""),
+    //     Entry('return_to_supplier_summary', ""),
+    //   ],
+    // ),
   ]),
   Entry('inventory_management', "assets/images/inventoryIcon.png", <Entry>[
     Entry('warehouses', '', <Entry>[

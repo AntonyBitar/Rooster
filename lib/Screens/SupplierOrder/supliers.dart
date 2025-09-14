@@ -6,7 +6,6 @@ import '../../Backend/get_countries.dart';
 import '../../Widgets/reusable_text_field.dart';
 import '../../const/Sizes.dart';
 import '../../const/colors.dart';
-
 class Suppliers extends StatefulWidget {
   const Suppliers({super.key});
 
@@ -15,9 +14,6 @@ class Suppliers extends StatefulWidget {
 }
 
 class _SuppliersState extends State<Suppliers> {
-  // late TabController _tabController;
-
-
   TextEditingController supplierNameController = TextEditingController();
   TextEditingController searchController = TextEditingController();
   TextEditingController referenceController = TextEditingController();
@@ -34,15 +30,8 @@ class _SuppliersState extends State<Suppliers> {
   TextEditingController websiteController = TextEditingController();
   TextEditingController internalNoteController = TextEditingController();
   TextEditingController grantedDiscountController = TextEditingController();
-  // final HomeController homeController = Get.find();
-
-
-  String paymentTerm = '',
-      priceListSelected = '',
-      selectedCountry = '',
-      selectedCity = '';
+  String selectedCountry = '', selectedCity = '';
   String selectedPhoneCode = '', selectedMobileCode = '';
-
   int selectedClientType = 1;
   int selectedTabIndex = 0;
   List tabsList = [
@@ -50,31 +39,13 @@ class _SuppliersState extends State<Suppliers> {
     'Accounting',
 
   ];
-
   Map data = {};
-  bool isClientsInfoFetched = false;
-
-  // getFieldsForCreateClientsFromBack() async {
-  //   var p = await getFieldsForCreateClient();
-  //   if ('$p' != '[]') {
-  //     setState(() {
-  //       data.addAll(p);
-  //       isClientsInfoFetched = true;
-  //     });
-  //   }
-  // }
-
   int selectedSupplierType = 1;
-
   List<String> titles = ['Doctor', 'Miss', 'Mister', 'Maitre', 'Professor'];
   String selectedTitle = '';
   bool isActiveInPosChecked = false;
   bool isBlockedChecked = false;
   final _formKey = GlobalKey<FormState>();
-  String countryValue = "";
-  String stateValue = "";
-  String cityValue = "";
-  String address = "";
   List<String>acc = [];
   List<String> countriesNamesList = [];
   bool isCountriesFetched = false;
@@ -105,14 +76,10 @@ class _SuppliersState extends State<Suppliers> {
     });
   }
 
-
-  // This widget is the root of your application.
-
   @override
   void initState() {
-    // getFieldsForCreateClientsFromBack();
-    getCountriesFromBack();
     super.initState();
+    getCountriesFromBack();
   }
 
   @override
@@ -128,7 +95,7 @@ class _SuppliersState extends State<Suppliers> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Create New Supplier",
+                Text("Create New Bloc",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -176,7 +143,6 @@ class _SuppliersState extends State<Suppliers> {
 
                 gapH16,
                 const Text(
-                  // '${data['supplierNumber'] ?? ''}',
                   "SP000001",
                   style: TextStyle(
                       fontSize: 36, fontWeight: FontWeight.bold),
@@ -185,7 +151,7 @@ class _SuppliersState extends State<Suppliers> {
 
                 DialogTextField(
                   textEditingController: supplierNameController,
-                  text: '${'Supplier Name*'}*',
+                  text: '${'Bloc Name*'}*',
                   rowWidth: MediaQuery.of(context).size.width * 0.5,
                   textFieldWidth: MediaQuery.of(context).size.width * 0.4,
                   validationFunc: (value) {
@@ -224,11 +190,7 @@ class _SuppliersState extends State<Suppliers> {
                           selectedPhoneCode = value;
                         });
                       },
-                      onChangedFunc: (value) {
-                        setState(() {
-                          // mainDescriptionController.text=value;
-                        });
-                      },
+                      onChangedFunc: (value) {},
                     ),
                     DialogTextField(
                       textEditingController: floorBldgController,
@@ -315,12 +277,7 @@ class _SuppliersState extends State<Suppliers> {
                         setState(() {
                           selectedMobileCode = value;
                         });
-                      },
-                      onChangedFunc: (value) {
-                        setState(() {
-                          // mainDescriptionController.text=value;
-                        });
-                      },
+                      }, onChangedFunc: (){},
                     ),
                     DialogTextField(
                       textEditingController: streetController,
@@ -329,11 +286,6 @@ class _SuppliersState extends State<Suppliers> {
                       textFieldWidth:
                       MediaQuery.of(context).size.width * 0.15,
                       validationFunc: (val) {},
-                      // onChangedFunc: (value){
-                      //   setState(() {
-                      //     mainDescriptionController.text=value;
-                      //   });
-                      // },
                     ),
                   ],
                 ),
@@ -365,14 +317,6 @@ class _SuppliersState extends State<Suppliers> {
                         }
                       },
                     ),
-                    // DialogTextField(
-                    //   textEditingController: cityController,
-                    //   text: 'city'.tr,
-                    //   rowWidth: MediaQuery.of(context).size.width * 0.22,
-                    //   textFieldWidth:
-                    //       MediaQuery.of(context).size.width * 0.15,
-                    //   validationFunc: (val) {},
-                    // ),
                     isCountriesFetched
                         ? SizedBox(
                       width: MediaQuery.of(context).size.width * 0.22,
@@ -429,21 +373,6 @@ class _SuppliersState extends State<Suppliers> {
                         ],
                       ),
                     )
-                    // DialogDropMenu(
-                    //   optionsList: countriesNamesList,
-                    //   controller: countryController,
-                    //   isDetectedHeight: true,
-                    //   text: 'country'.tr,
-                    //   hint: '',
-                    //   rowWidth: MediaQuery.of(context).size.width * 0.22,
-                    //   textFieldWidth: MediaQuery.of(context).size.width * 0.15,
-                    //   onSelected: (val) {
-                    //     setState(() {
-                    //       selectedCountry = val;
-                    //       getCitiesFromBack(val);
-                    //     });
-                    //   },
-                    // )
                         :SizedBox(
                       width: MediaQuery.of(context).size.width * 0.22,
                       // child: loading()
@@ -553,21 +482,6 @@ class _SuppliersState extends State<Suppliers> {
                         ],
                       ),
                     )
-
-                    //     ? DialogDropMenu(
-                    //   optionsList: citiesNamesList,
-                    //   controller: cityController,
-                    //   isDetectedHeight: true,
-                    //   text: 'city'.tr,
-                    //   hint:selectedCountry.isEmpty? 'select the country first':'',
-                    //   rowWidth: MediaQuery.of(context).size.width*0.22,
-                    //   textFieldWidth: MediaQuery.of(context).size.width * 0.15,
-                    //   onSelected: (val) {
-                    //     setState(() {
-                    //       selectedCity = val;
-                    //     });
-                    //   },
-                    // )
                         : SizedBox(
                       width: MediaQuery.of(context).size.width * 0.22,
                       // child: loading()
@@ -949,99 +863,4 @@ class _SuppliersState extends State<Suppliers> {
       ),
     );
   }
-
-}
-
-
-//
-// Widget _buildDropdownItem(Country country) => SizedBox(
-// // width:widget.textFieldWidth*0.3,
-//   child: Row(children: [
-//     SizedBox(
-// // width: widget.textFieldWidth * 0.2 ,
-//         child: CountryPickerUtils.getDefaultFlagImage(country)),
-//     SizedBox(
-// // width widget.textFieldWidth * 0.2 ,
-//       child: Text(
-//         "+${country.phoneCode}",
-//         style: const TextStyle(fontSize: 13),
-//       ),
-//     ),
-//   ]),
-// );
-//
-//
-
-class CountryTextField extends StatefulWidget {
-  const CountryTextField({super.key, required this.onChangedFunc, required this.validationFunc,
-    required this.text, required this.rowWidth, required this.textFieldWidth, required this.textEditingController,
-    this.hint='', required this.onCodeSelected,
-  });
-  final Function onChangedFunc;
-  final Function validationFunc;
-  final Function onCodeSelected;
-  final String text;
-  final String hint;
-  final double rowWidth;
-  final double textFieldWidth;
-  final TextEditingController textEditingController;
-
-  @override
-  State<CountryTextField> createState() => _CountryTextFieldState();
-}
-
-class _CountryTextFieldState extends State<CountryTextField> {
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.rowWidth,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(widget.text),
-          SizedBox(
-            width:widget.textFieldWidth,
-            child: TextFormField(
-              cursorColor: Colors.black,
-              controller: widget.textEditingController,
-              decoration: InputDecoration(
-                hintText:widget.hint,
-                hintStyle: const TextStyle(fontSize: 12,fontStyle: FontStyle.italic),
-                contentPadding: const EdgeInsets.fromLTRB(10, 0, 25, 5),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                  BorderSide(color: Primary.primary.withAlpha((0.2 * 255).toInt()), width: 1),
-                  borderRadius: const BorderRadius.all(Radius.circular(9)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                  BorderSide(color: Primary.primary.withAlpha((0.4 * 255).toInt()), width: 2),
-                  borderRadius: const BorderRadius.all(Radius.circular(9)),
-                ),
-                errorStyle: const TextStyle(
-                  fontSize: 10.0,
-                ),
-                focusedErrorBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(9)),
-                  borderSide: BorderSide(width: 1, color: Colors.red),
-                ),
-              ),
-              // onTap: (){
-              //   showCountryPicker(
-              //     context: context,
-              //     // showPhoneCode: true, // optional. Shows phone code before the country name.
-              //     onSelect: ( country) {
-              //     },
-              //   );
-              //   // widget.onChangedFunc(value);
-              // },
-              onChanged: (value) => widget.onChangedFunc(value),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
 }

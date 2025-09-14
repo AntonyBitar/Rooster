@@ -218,7 +218,7 @@ Future<String> getCompanyLocalPaymentsFromPref() async {
 }
 
 Future<String> getCompanyPrimaryCurrencyFromPref() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  SharedPreferences prefs =   await SharedPreferences.getInstance();
   String primaryCurrency = prefs.getString('primaryCurrency') ?? 'USD';
   return primaryCurrency;
 }

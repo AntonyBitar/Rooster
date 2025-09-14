@@ -1,19 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:rooster_app/Blocs/City/Bloc/CityBloc.dart';
+import 'package:rooster_app/Blocs/Countries/Bloc/CountryBloc.dart';
+import 'package:rooster_app/Blocs/Countries/Events/CountryEvent.dart';
+import 'package:rooster_app/Blocs/Countries/Repository/CountryRepository.dart';
+import 'package:rooster_app/Blocs/SupplierCreation/ApiProvider/SupplierApi.dart';
+import 'package:rooster_app/Blocs/SupplierCreation/Bloc/SupplierBloc.dart';
+import 'package:rooster_app/Blocs/SupplierCreation/Events/SupplierEvent.dart';
+import 'package:rooster_app/Blocs/SupplierCreation/Repository/SupplierRepository.dart';
 import 'package:rooster_app/Screens/AccountSettings/RolesAndPermissions/roles.dart';
 import 'package:rooster_app/Screens/AccountSettings/RolesAndPermissions/roles_and_permissions.dart';
 import 'package:rooster_app/Screens/POS/pos_screen_for_mobile.dart';
 import 'package:rooster_app/Screens/PendingDocs/pending_docs.dart';
 import 'package:rooster_app/Screens/PosReports/cash_trays/cash_tray_filter.dart';
+import 'package:rooster_app/Screens/Supplier/accounts_page.dart';
+import 'package:rooster_app/Screens/Supplier/add_new_supplier.dart';
 import 'package:rooster_app/Screens/SupplierOrder/new_supplier_order.dart';
 import 'package:rooster_app/Screens/SupplierOrder/supplier_order_summary.dart';
 import 'package:rooster_app/Screens/Transfers/transfer_details.dart';
 import 'package:rooster_app/Screens/Warehouses/warehouses.dart';
 import 'package:rooster_app/const/colors.dart';
 import 'package:rooster_app/const/sizes.dart';
+import '../Blocs/City/ApiProvider/CityApi.dart';
+import '../Blocs/City/Repository/CityRepository.dart';
+import '../Blocs/Countries/ApiProvider/CountryApi.dart';
+import '../Blocs/Supplier/ApiProvider/SupplierApi.dart';
+import '../Blocs/Supplier/Bloc/SupplierBloc.dart';
+import '../Blocs/Supplier/Events/SupplierEvent.dart';
+import '../Blocs/Supplier/Repository/SupplierRepository.dart';
 import '../Controllers/home_controller.dart';
-import 'Combo/ComboSummaryWidgets/combo_data.dart' show ComboData;
+import '../Cubits/CheckBoxStates.dart';
+import 'Combo/ComboSummaryWidgets/combo_data.dart';
 import 'Combo/combo_summary.dart';
 import 'Delivery/delivery.dart';
 import 'Delivery/delivery_summary.dart';
@@ -36,6 +55,8 @@ import 'POS/pos_screen.dart';
 import 'PosReports/SessionsReport/session_details_after_filter.dart';
 import 'PosReports/SessionsReport/sessions_details.dart';
 import 'PosReports/SessionsReport/sessions_details_after_filter_mobile.dart';
+import 'package:http/http.dart' as http;
+
 import 'PosReports/WasteReport/waste_filter.dart';
 import 'PosReports/WasteReport/waste_report.dart';
 import 'Products/products_page.dart';
@@ -111,6 +132,7 @@ class _HomeBodyState extends State<HomeBody> {
     'new_quotation': const CreateNewQuotation(),
     'quotation_summary': const QuotationSummary(),
     'add_new_client': const AddNewClient(),
+
     'accounts': const AccountsPage(),
     'clients': const AccountsPage(),
     'dashboard_summary': const Dashboard(),
@@ -127,7 +149,6 @@ class _HomeBodyState extends State<HomeBody> {
     'create_users': const AddNewUser(),
     'account_settings': const AddNewUser(),
     'users': const UsersPage(),
-    'suppliers': const Suppliers(),
     'new_sales_order': const CreateNewClientOrder(),
     'sales_order': const CreateNewClientOrder(),
     'sales_order_summary': const ClientOrderSummary(),
@@ -155,21 +176,75 @@ class _HomeBodyState extends State<HomeBody> {
     'warehouses': const WarehousesPage(),
     'create_warehouse': const CreateWarehousePage(),
     'sales_and_clients': const AccountsPage(),
-    'purchases_and_suppliers': const Suppliers(),
     'inventory_management': const PhysicalInventory(),
   };
 
   final HomeController homeController = Get.find();
+  late SuppliersBloc suppliersBloc;
+  late BlocProvider<SuppliersBloc> bloc;
 
   @override
   void initState() {
     homeController.selectedTab.value='dashboard_summary';
     homeController.isOpened.value = true;
     homeController.isMenuOpened = true;
+    suppliersBloc = SuppliersBloc(
+      SupplierRepository(SupplierApi(http.Client())),
+    );
+     bloc =BlocProvider<SuppliersBloc>(create: (context) =>suppliersBloc,child: SupplierAccountsPage(),);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
+
+    contentList.addAll(
+      {
+        'suppliers':  BlocProvider.value(
+          value: suppliersBloc, // reuse the same instance
+          child: SupplierAccountsPage(),
+        ),
+        'purchases_and_suppliers':  BlocProvider.value(
+          value: suppliersBloc, // reuse the same instance
+          child: SupplierAccountsPage(),
+        ),
+        'supplierAccounts':  BlocProvider.value(
+          value: suppliersBloc, // reuse the same instance
+          child: SupplierAccountsPage(),
+        ),
+        'add_new_supplier': MultiBlocProvider(
+          providers: [
+            BlocProvider.value( value: suppliersBloc, ),
+            BlocProvider<SuppliersCreationBloc>(
+              create: (context) => SuppliersCreationBloc(
+                SupplierCreationRepository(
+                  SupplierCreationApi(http.Client()),
+                ),
+              )..add(LoadSupplierCreation('',1)),
+            ),
+            BlocProvider<CountryBloc>(
+              create: (context) => CountryBloc(
+                CountryRepository(
+                  CountryApi(http.Client()),
+                ),
+              )..add(LoadCountryCreation(search: '',selectedCountry: null,shouldLoad: false,page:  1)),
+            ),
+            BlocProvider<CitiesBloc>(
+              create: (context) => CitiesBloc(
+                repository: CityRepository(
+                  CityApi(http.Client()),
+                ),
+                countryBloc: context.read<CountryBloc>(),
+              ),
+            ),
+            BlocProvider<CheckBoxCubit>(
+              create: (context) => CheckBoxCubit({"blocked":false, "show_in_POS":false}),
+            ),
+          ],
+          child: AddNewSupplier(),
+        ),
+        }
+    );
     var maxWidth = MediaQuery.of(context).size.width * 0.21;
     var minWidth = MediaQuery.of(context).size.width * 0.045;
     return Obx(
@@ -193,10 +268,13 @@ class _HomeBodyState extends State<HomeBody> {
                   children: [
                     const HomeAppBar(),
                     gapH56,
-                    contentList[homeController.selectedTab.value] ??
-                        const SizedBox(),
+                    Expanded(
+                      child: contentList[homeController.selectedTab.value] ??
+                          const SizedBox(),
+                    ),
                   ],
                 ),
+
               ),
             ),
             // )

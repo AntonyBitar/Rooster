@@ -70,7 +70,7 @@ class _SupplierOrderState extends State<SupplierOrderSummary> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // PageTitle(text: 'quotations'.tr),
-                Text("Supplier Orders",
+                Text("Bloc Orders",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -82,7 +82,7 @@ class _SupplierOrderState extends State<SupplierOrderSummary> {
                     homeController.selectedTab.value = 'new_quotation';
                   },
                   // btnText: 'create_new_quotation'.tr,
-                  btnText: 'Create New Supplier Order',
+                  btnText: 'Create New Bloc Order',
                 ),
               ],
             ),
@@ -101,7 +101,7 @@ class _SupplierOrderState extends State<SupplierOrderSummary> {
             ),
             const ReusableChip(
               // name: 'all_quotations'.tr,
-              name: 'All Supplier Orders',
+              name: 'All Bloc Orders',
             ),
             Column(
               children: [
@@ -542,7 +542,7 @@ class _MobileSupplierOrderSummaryState extends State<MobileSupplierOrderSummary>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // PageTitle(text: 'quotations'.tr),
-            Text("Supplier Orders",
+            Text("Bloc Orders",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -555,7 +555,7 @@ class _MobileSupplierOrderSummaryState extends State<MobileSupplierOrderSummary>
                 homeController.selectedTab.value = 'new_quotation';
               },
               // btnText: 'create_new_quotation'.tr,
-              btnText: 'Create New Supplier Order',
+              btnText: 'Create New Bloc Order',
             ),
             gapH10,
             SizedBox(
@@ -570,7 +570,7 @@ class _MobileSupplierOrderSummaryState extends State<MobileSupplierOrderSummary>
             gapH24,
             const ReusableChip(
               // name: 'all_quotations'.tr,
-              name: 'All Supplier Orders',
+              name: 'All Bloc Orders',
               isDesktop: false,
 
             ),
