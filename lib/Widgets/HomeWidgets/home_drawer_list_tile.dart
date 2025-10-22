@@ -238,6 +238,12 @@ const List<Entry> data = <Entry>[
   //   "categories",
   //   "assets/images/categoriesIcon.png",
   //     <Entry>[Entry('categories', ''), Entry('create_category', '')]),
+  Entry("cost_center_page", "",
+  <Entry>[
+    Entry("cost_center_page", ""),
+    // Entry("add_new_cost_center", ""),
+  ]
+  ),
   Entry("poss", "assets/images/pos.png", <Entry>[Entry('poss', '')]),
   // Entry(
   //   "transfers",

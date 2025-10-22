@@ -43,6 +43,7 @@ class _SupplierAccountsPageState extends State<SupplierAccountsPage> {
   List<String> tabsList = ['general', 'transactions','SOA'];
   int selectedTabIndex = 0;
   int? selectedId;
+  bool _isLoadingMore = false;
   String primaryCurr = '';
   Timer? searchOnStoppedTyping;
   final TextEditingController searchController = TextEditingController();
@@ -77,13 +78,15 @@ class _SupplierAccountsPageState extends State<SupplierAccountsPage> {
     });
   }
 
-  void _onScroll() {
+  void _onScroll()async {
     if (!_scrollController.hasClients) return;
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    if (currentScroll >= (maxScroll * 0.9)) {
+    if (currentScroll >= (maxScroll * 0.9)&&!_isLoadingMore) {
+      _isLoadingMore=true;
       context.read<SuppliersBloc>().add(LoadSuppliers(searchController.text));
-
+      await context.read<SuppliersBloc>().stream.firstWhere((s) => s is SuppliersLoadSuccess);
+      _isLoadingMore=false;
     }
   }
 

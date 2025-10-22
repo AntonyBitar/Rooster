@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_intl_phone_field/country_picker_dialog.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
-import 'package:rooster_app/Screens/Supplier/add_new_supplier.dart';
 
 import '../Wrapper/StringWrapper.dart';
 class PhoneDialog {

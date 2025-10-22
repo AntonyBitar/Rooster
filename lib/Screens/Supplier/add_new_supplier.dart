@@ -13,7 +13,6 @@ import 'package:rooster_app/Models/Company/CompanyModel.dart';
 import 'package:rooster_app/Models/Country/CountryModel.dart';
 import 'package:rooster_app/Models/PaymentTerm/PaymentTermModel.dart';
 import 'package:rooster_app/Models/Supplier/SupplierModel.dart';
-import 'package:rooster_app/Screens/Configuration/taxation_groups_dialog.dart';
 import '../../Blocs/City/Bloc/CityBloc.dart';
 import '../../Blocs/City/States/CityStates.dart';
 import '../../Blocs/Supplier/Events/SupplierEvent.dart';
@@ -30,7 +29,6 @@ import '../../Cubits/CheckBoxStates.dart';
 import '../../Locale_Memory/save_user_info_locally.dart';
 import '../../Widgets/custom_snak_bar.dart';
 import '../../Widgets/page_title.dart';
-import '../../Widgets/reusable_btn.dart';
 import '../../Widgets/reusable_text_field.dart';
 import '../../Wrapper/StringWrapper.dart';
 import '../../const/Sizes.dart';
@@ -109,7 +107,7 @@ class _AddNewSupplierState extends State<AddNewSupplier> {
                       ),
                       text: '${'supplier_code_create'.tr}*',
                       rowWidth: MediaQuery.of(context).size.width * 0.5,
-                      textFieldWidth: MediaQuery.of(context).size.width * 0.4,
+                      textFieldWidth:homeController.isMenuOpened1.value?MediaQuery.of(context).size.width * 0.4:200,
                       validationFunc:
                           (value) => value.isEmpty ? 'required_field'.tr : null,
                     );

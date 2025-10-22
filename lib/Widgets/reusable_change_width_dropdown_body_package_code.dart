@@ -10,6 +10,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/src/foundation/diagnostics.dart';
 
 
 // Examples can assume:
@@ -820,7 +821,7 @@ class _DropdownMenusCodeCodeState<T> extends State<DropdownMenusCodeCode<T>> {
     if (widget.menuHeight != null) {
       effectiveMenuStyle = effectiveMenuStyle.copyWith(maximumSize: WidgetStatePropertyAll<Size>(Size(double.infinity, widget.menuHeight!)));
     }
-    final InputDecorationTheme effectiveInputDecorationTheme = widget.inputDecorationTheme
+    final Diagnosticable effectiveInputDecorationTheme = widget.inputDecorationTheme
         ?? theme.inputDecorationTheme
         ?? defaults.inputDecorationTheme!;
 
@@ -1226,7 +1227,7 @@ class _DropdownMenuDefaultsM3 extends DropdownMenuThemeData {
   }
 
   @override
-  InputDecorationTheme get inputDecorationTheme {
-    return const InputDecorationTheme(border: OutlineInputBorder());
+  InputDecorationThemeData? get inputDecorationTheme {
+    return const InputDecorationThemeData(border: OutlineInputBorder());
   }
 }

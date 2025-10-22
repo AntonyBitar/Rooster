@@ -24,13 +24,19 @@ class ReusableTextField extends StatefulWidget {
     required this.isPasswordField,
     this.isEnable = true,
     required this.textEditingController,
+    this.customSuffixIcon, // NEW
   });
+
   final Function onChangedFunc;
   final Function validationFunc;
   final String hint;
   final bool isPasswordField;
   final bool isEnable;
   final TextEditingController textEditingController;
+
+  /// Custom suffix icon (for sort/filter/etc.)
+  final Widget? customSuffixIcon;
+
   @override
   State<ReusableTextField> createState() => _ReusableTextFieldState();
 }
@@ -38,6 +44,7 @@ class ReusableTextField extends StatefulWidget {
 class _ReusableTextFieldState extends State<ReusableTextField> {
   bool showPassword = false;
   HomeController homeController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -47,13 +54,7 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
       obscureText: widget.isPasswordField ? !showPassword : false,
       decoration: InputDecoration(
         hintText: widget.hint,
-        // labelStyle: TextStyle(
-        //   color: kBasicColor
-        // ),
-        // filled: true,
-        // fillColor: Colors.white,
-        suffixIcon:
-        widget.isPasswordField
+        suffixIcon: widget.isPasswordField
             ? IconButton(
           onPressed: () {
             setState(() {
@@ -66,9 +67,8 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
             size: 23,
           ),
         )
-            : null,
-        contentPadding:
-        homeController.isMobile.value
+            : widget.customSuffixIcon, // 👈 use your custom icon if not password
+        contentPadding: homeController.isMobile.value
             ? const EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0)
             : const EdgeInsets.fromLTRB(10, 0, 25, 5),
         enabledBorder: OutlineInputBorder(
@@ -98,6 +98,7 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
     );
   }
 }
+
 
 class ReusableNumberField extends StatefulWidget {
   const ReusableNumberField({

@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:rooster_app/Blocs/City/Bloc/CityBloc.dart';
+import 'package:rooster_app/Blocs/Cost%20Center/ApiProvider/CostCenterApi.dart';
+import 'package:rooster_app/Blocs/Cost%20Center/Bloc/CostCenterBloc.dart';
+import 'package:rooster_app/Blocs/Cost%20Center/Repository/CostCenterRepository.dart';
 import 'package:rooster_app/Blocs/Countries/Bloc/CountryBloc.dart';
 import 'package:rooster_app/Blocs/Countries/Events/CountryEvent.dart';
 import 'package:rooster_app/Blocs/Countries/Repository/CountryRepository.dart';
@@ -12,6 +15,8 @@ import 'package:rooster_app/Blocs/SupplierCreation/Events/SupplierEvent.dart';
 import 'package:rooster_app/Blocs/SupplierCreation/Repository/SupplierRepository.dart';
 import 'package:rooster_app/Screens/AccountSettings/RolesAndPermissions/roles.dart';
 import 'package:rooster_app/Screens/AccountSettings/RolesAndPermissions/roles_and_permissions.dart';
+import 'package:rooster_app/Screens/CostCenter/add_new_cost_center.dart';
+import 'package:rooster_app/Screens/CostCenter/cost_center_page.dart';
 import 'package:rooster_app/Screens/POS/pos_screen_for_mobile.dart';
 import 'package:rooster_app/Screens/PendingDocs/pending_docs.dart';
 import 'package:rooster_app/Screens/PosReports/cash_trays/cash_tray_filter.dart';
@@ -181,6 +186,8 @@ class _HomeBodyState extends State<HomeBody> {
 
   final HomeController homeController = Get.find();
   late SuppliersBloc suppliersBloc;
+  late CostCenterBloc costCenterBloc;
+
   late BlocProvider<SuppliersBloc> bloc;
 
   @override
@@ -190,6 +197,9 @@ class _HomeBodyState extends State<HomeBody> {
     homeController.isMenuOpened = true;
     suppliersBloc = SuppliersBloc(
       SupplierRepository(SupplierApi(http.Client())),
+    );
+    costCenterBloc = CostCenterBloc(
+      repository:CostCenterRepository(CostCenterApi(http.Client())),
     );
      bloc =BlocProvider<SuppliersBloc>(create: (context) =>suppliersBloc,child: SupplierAccountsPage(),);
     super.initState();
@@ -208,6 +218,11 @@ class _HomeBodyState extends State<HomeBody> {
           value: suppliersBloc, // reuse the same instance
           child: SupplierAccountsPage(),
         ),
+        'cost_center_page':  BlocProvider.value(
+          value: costCenterBloc, // reuse the same instance
+          child: CostCenterPage(),
+        ),
+        'add_new_cost_center':BlocProvider.value(value: costCenterBloc,child: AddNewCostCenter(),),
         'supplierAccounts':  BlocProvider.value(
           value: suppliersBloc, // reuse the same instance
           child: SupplierAccountsPage(),
